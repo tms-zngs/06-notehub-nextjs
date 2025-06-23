@@ -6,11 +6,12 @@ import {
   dehydrate,
 } from "@tanstack/react-query";
 type Props = {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 };
 
 const NoteDetails = async ({ params }: Props) => {
-  const id = Number(params.id);
+  const resolvedParams = await params;
+  const id = Number(resolvedParams.id);
   const queryClient = new QueryClient();
 
   await queryClient.prefetchQuery({
