@@ -8,12 +8,12 @@ import css from "./page.module.css";
 import { Toaster } from "react-hot-toast";
 import { PulseLoader } from "react-spinners";
 import { useDebounce } from "use-debounce";
-import NoteList from "@/componets/NoteList/NoteList";
-import NoteModal from "@/componets/NoteModal/NoteModal";
-import Pagination from "@/componets/Pagination/Pagination";
-import SearchBox from "@/componets/SearchBox/SearchBox";
-import EmptyState from "@/componets/EmptyState/EmptyState";
-import ErrorMessage from "@/componets/ErrorMessage/ErrorMessage";
+import NoteList from "@/components/NoteList/NoteList";
+import NoteModal from "@/components/NoteModal/NoteModal";
+import Pagination from "@/components/Pagination/Pagination";
+import SearchBox from "@/components/SearchBox/SearchBox";
+import EmptyState from "@/components/EmptyState/EmptyState";
+import ErrorMessage from "@/components/ErrorMessage/ErrorMessage";
 
 interface NotesClientProps {
   initialNotes: Note[];
