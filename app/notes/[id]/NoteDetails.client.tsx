@@ -30,7 +30,12 @@ const NoteDetailsClient = () => {
           <button className={css.editBtn}>Edit note</button>
         </div>
         <p className={css.content}>{note.content}</p>
-        <p className={css.date}>Created date</p>
+        {note.tag && <p className={css.tag}>Tag: {note.tag}</p>}
+        {note.createdAt && (
+          <p className={css.date}>
+            Created date: {new Date(note.createdAt).toLocaleDateString()}
+          </p>
+        )}
       </div>
     </div>
   );

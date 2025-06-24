@@ -3,8 +3,11 @@ export interface Note {
   id: number;
   title: string;
   content: string;
-  tag: "Work" | "Personal" | "Meeting" | "Shopping" | "Todo";
+  createdAt: string;
+  updatedAt: string;
+  tag: TagName;
 }
+
 export interface NoteFormValues {
   title: string;
   content: string;

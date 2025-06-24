@@ -8,10 +8,7 @@ const Footer = () => {
           <p>Developer: Tomas Zingis</p>
           <p>
             Contact us:
-            <a href="<mailto:tomas.zingis@gmail.com>">
-              {" "}
-              tomas.zingis@gmail.com
-            </a>
+            <a href="mailto:tomas.zingis@gmail.com"> tomas.zingis@gmail.com</a>
           </p>
         </div>
       </div>

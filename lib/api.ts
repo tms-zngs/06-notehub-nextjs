@@ -4,6 +4,7 @@ import type { Note, NoteFormValues } from "../types/note";
 type FetchNotesParams = {
   page: number;
   searchQuery?: string;
+  perPage?: number;
 };
 
 interface ApiResponse {
@@ -17,19 +18,23 @@ const token = process.env.NEXT_PUBLIC_NOTEHUB_TOKEN;
 export const fetchNotes = async ({
   page = 1,
   searchQuery,
+  perPage = 12,
 }: FetchNotesParams): Promise<ApiResponse> => {
-  const perPage = 12;
+  const params: { [key: string]: unknown } = {
+    page,
+    perPage,
+  };
+
+  if (searchQuery) {
+    params.search = searchQuery;
+  }
 
   try {
     const response = await axios.get<ApiResponse>(`/notes`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
-      params: {
-        page,
-        perPage,
-        search: searchQuery,
-      },
+      params,
     });
     return response.data;
   } catch (error) {
@@ -67,11 +72,15 @@ export const deleteNote = async (id: number): Promise<Note> => {
 };
 
 export const fetchNoteById = async (id: number): Promise<Note> => {
-  const response = await axios.get<Note>(`/notes/${id}`, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
-
-  return response.data;
+  try {
+    const response = await axios.get<Note>(`/notes/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error(`Failed to fetch note with id ${id}:`, error);
+    throw error;
+  }
 };
